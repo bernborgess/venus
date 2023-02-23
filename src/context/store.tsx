@@ -4,17 +4,17 @@ const DataContext = createContext({});
 
 const DataProvider = ({ children }:
   React.PropsWithChildren) => {
-  const [globalSingers, setGlobalSingers] = useState([]);
-  const [globalSongs, setGlobalSongs] = useState([]);
-  const [globalStudios, setGlobalStudios] = useState([]);
+  const [globalArtists, setGlobalArtists] = useState([]);
+  const [globalAlbums, setGlobalAlbums] = useState([]);
+  const [globalTodos, setGlobalTodos] = useState([]);
 
   const dataState = {
-    globalSingers,
-    globalSongs,
-    globalStudios,
-    setGlobalSingers,
-    setGlobalSongs,
-    setGlobalStudios
+    globalArtists,
+    globalAlbums,
+    globalTodos,
+    setGlobalArtists,
+    setGlobalAlbums,
+    setGlobalTodos
   };
 
   return (
