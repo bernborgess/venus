@@ -1,5 +1,7 @@
-import { GridColDef } from "@mui/x-data-grid";
+import { Edit as EditIcon } from "@mui/icons-material";
+import { GridCellParams, GridColDef } from "@mui/x-data-grid";
 import { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { DataGridVenus } from "../components/DataGridVenus";
 import { WaitingFetchCircle } from "../components/WaitingFetchCircle";
 import { Artist } from "../constants/artist";
@@ -8,10 +10,26 @@ import { ApiContext } from "../services";
 type Props = {}
 
 const artistColumns: Array<GridColDef & { field: keyof Artist }> = [
-  { field: 'name', headerName: "Nome" },
-  { field: 'phone', headerName: "Telefone" },
-  { field: 'website', headerName: "Site" }
+  { field: 'name', headerName: "Nome", flex: 1 },
+  { field: 'phone', headerName: "Telefone", flex: 1 },
+  { field: 'website', headerName: "Site", flex: 1 },
+  {
+    field: 'id', headerName: "Ações", flex: 1,
+    renderCell: (params: GridCellParams) =>
+      <ActionButtons id={params.value} />
+  }
 ]
+
+function ActionButtons({ id }: { id: number }) {
+  const navigate = useNavigate();
+  return (
+    <div onClick={() => navigate(`${id}`)}>
+      <EditIcon />
+    </div>
+  )
+}
+
+
 
 export function AllArtists({ }: Props) {
 

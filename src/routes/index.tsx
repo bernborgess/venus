@@ -2,6 +2,7 @@ import { createContext } from "react";
 import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
 import { NavBar } from "../components/NavBar";
 import { AllArtists } from "../pages/AllArtists";
+import { ArtistProfile } from "../pages/ArtistProfile";
 
 const ALL_ARTISTS_ROUTE = "artists";
 
@@ -29,8 +30,12 @@ const RoutesProvider = () => {
         <Routes>
           <Route path="*" element={<NavBar />}>
             <Route
-              path={ALL_ARTISTS_ROUTE}
+              path="artists"
               element={<AllArtists />}
+            />
+            <Route
+              path="artists/:id"
+              element={<ArtistProfile />}
             />
             <Route
               path="*"
