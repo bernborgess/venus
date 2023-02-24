@@ -8,22 +8,23 @@ import { getArtist } from "./getArtist";
 import { getArtists } from "./getArtists";
 import { getTodosOfArtist } from "./getTodosOfArtist";
 
-const ApiContext = createContext({});
+const apiState = {
+  addArtist,
+  addTodo,
+  deleteArtist,
+  getAlbums,
+  getAlbumsOfArtist,
+  getArtist,
+  getArtists,
+  getTodosOfArtist
+};
+const ApiContext = createContext(apiState);
 
 const ApiProvider = ({ children }:
   React.PropsWithChildren) => {
-  const apiState = {
-    addArtist,
-    addTodo,
-    deleteArtist,
-    getAlbums,
-    getAlbumsOfArtist,
-    getArtist,
-    getArtists,
-    getTodosOfArtist
-  };
 
   return <ApiContext.Provider value={apiState}>{children}</ApiContext.Provider>
 }
 
 export { ApiContext, ApiProvider };
+
