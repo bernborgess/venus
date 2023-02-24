@@ -1,7 +1,7 @@
+import { styled } from "@mui/material";
 
-import styled from "styled-components";
 
-export const Container = styled.div<{ height: number }>`
+export const Container = styled("div") <{ height: number }>`
   height: ${({ height }) => `${height}vh`};
   display: flex;
   flex-direction: row;
