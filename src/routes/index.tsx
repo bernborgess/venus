@@ -1,6 +1,7 @@
 import { createContext, useContext } from "react";
 import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
 import { NavBar } from "../components/NavBar";
+import { AllAlbums } from "../pages/AllAlbums";
 import { AllArtists } from "../pages/AllArtists";
 import { ArtistProfile } from "../pages/ArtistProfile";
 import { NotFound } from "../pages/NotFound";
@@ -40,12 +41,16 @@ const RoutesProvider = () => {
         <Routes>
           <Route path="*" element={<NavBar />}>
             <Route
-              path="artists"
+              path={ARTISTS_ROUTE}
               element={<AllArtists />}
             />
             <Route
-              path="artists/:id"
+              path={`${ARTISTS_ROUTE}/:id`}
               element={<ArtistProfile />}
+            />
+            <Route
+              path={ALBUMS_ROUTE}
+              element={<AllAlbums />}
             />
             <Route
               path="*"

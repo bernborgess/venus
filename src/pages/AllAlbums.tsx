@@ -3,14 +3,12 @@ import { useEffect, useState } from "react";
 import { ActionButtons } from "../components/ActionButtons";
 import { DataGridVenus } from "../components/DataGridVenus";
 import { WaitingFetchCircle } from "../components/WaitingFetchCircle";
-import { Artist } from "../constants/artist";
+import { Album } from "../constants/album";
 import { useApi } from "../services";
 
 
-const artistColumns: Array<GridColDef & { field: keyof Artist }> = [
-  { field: "name", headerName: "Nome", flex: 1 },
-  { field: "phone", headerName: "Telefone", flex: 1 },
-  { field: "website", headerName: "Site", flex: 1 },
+const albumsColumns: Array<GridColDef & { field: keyof Album }> = [
+  { field: "title", headerName: "Nome", flex: 3 },
   {
     field: "id", headerName: "Ações", flex: 1,
     renderCell: (params: GridCellParams) =>
@@ -19,27 +17,25 @@ const artistColumns: Array<GridColDef & { field: keyof Artist }> = [
 ];
 
 
-
-
-export function AllArtists() {
+export function AllAlbums() {
 
   const {
-    getArtists
+    getAlbums
   } = useApi();
 
-  const [artists, setArtists] = useState<Artist[] | null>(null);
+  const [albums, setAlbums] = useState<Album[] | null>(null);
 
   useEffect(() => {
 
     const fetch = async () => {
-      const artistsBack = await getArtists();
-      setArtists(artistsBack);
+      const albumsBack = await getAlbums();
+      setAlbums(albumsBack);
     };
     fetch();
 
   }, []);
 
-  if (!artists)
+  if (!albums)
     return <WaitingFetchCircle />;
 
   return (
@@ -48,8 +44,8 @@ export function AllArtists() {
       background: "white"
     }}>
       <DataGridVenus
-        rows={artists}
-        columns={artistColumns}
+        rows={albums}
+        columns={albumsColumns}
       />
     </div>
   );
