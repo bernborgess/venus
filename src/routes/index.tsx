@@ -1,21 +1,29 @@
-import { createContext } from "react";
+import { createContext, useContext } from "react";
 import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
 import { NavBar } from "../components/NavBar";
 import { AllArtists } from "../pages/AllArtists";
 import { ArtistProfile } from "../pages/ArtistProfile";
 import { NotFound } from "../pages/NotFound";
 
-const ALL_ARTISTS_ROUTE = "artists";
+const ARTISTS_ROUTE = "artists";
+const ALBUMS_ROUTE = "albums";
 
-const RoutingContext = createContext({});
+interface RoutingState {
+  navigateToAllArtists: () => void,
+  navigateToArtistProfile: (artistId: number) => void,
+  navigateToAllAlbums: () => void,
+}
+
+const RoutingContext = createContext<RoutingState | undefined>(undefined);
 
 const RoutingProvider = ({ children }:
   React.PropsWithChildren) => {
   const navigate = useNavigate();
 
-
-  const routingState = {
-    navigateToAllArtists: () => navigate(ALL_ARTISTS_ROUTE)
+  const routingState: RoutingState = {
+    navigateToAllArtists: () => navigate(ARTISTS_ROUTE),
+    navigateToAllAlbums: () => navigate(ALBUMS_ROUTE),
+    navigateToArtistProfile: (artistId: number) => navigate(`${ARTISTS_ROUTE}/${artistId}`)
   };
 
   return (
@@ -50,5 +58,13 @@ const RoutesProvider = () => {
   );
 };
 
-export { RoutesProvider, RoutingContext };
+function useRouting() {
+  const context = useContext(RoutingContext);
+  if (context === undefined) {
+    throw new Error("useRouting must be within RoutesProvider");
+  }
+  return context;
+}
+
+export { RoutesProvider, useRouting };
 

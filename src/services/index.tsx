@@ -1,4 +1,4 @@
-import { createContext } from "react";
+import { createContext, useContext } from "react";
 import { addArtist } from "./addArtist";
 import { addTodo } from "./addTodo";
 import { deleteArtist } from "./deleteArtist";
@@ -18,6 +18,7 @@ const apiState = {
   getArtists,
   getTodosOfArtist
 };
+
 const ApiContext = createContext(apiState);
 
 const ApiProvider = ({ children }:
@@ -26,5 +27,7 @@ const ApiProvider = ({ children }:
   return <ApiContext.Provider value={apiState}>{children}</ApiContext.Provider>;
 };
 
-export { ApiContext, ApiProvider };
+const useApi = () => useContext(ApiContext);
+
+export { useApi, ApiProvider };
 

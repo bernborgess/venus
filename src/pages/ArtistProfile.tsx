@@ -1,14 +1,14 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { WaitingFetchCircle } from "../components/WaitingFetchCircle";
 import { Artist } from "../constants/artist";
-import { ApiContext } from "../services";
+import { useApi } from "../services";
 
 export function ArtistProfile() {
   const { id } = useParams();
   const {
     getArtist
-  } = useContext(ApiContext);
+  } = useApi();
 
   const [artist, setArtist] = useState<Artist | null>(null);
 

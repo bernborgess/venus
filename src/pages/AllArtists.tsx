@@ -1,11 +1,11 @@
 import { Edit as EditIcon } from "@mui/icons-material";
 import { GridCellParams, GridColDef } from "@mui/x-data-grid";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { DataGridVenus } from "../components/DataGridVenus";
 import { WaitingFetchCircle } from "../components/WaitingFetchCircle";
 import { Artist } from "../constants/artist";
-import { ApiContext } from "../services";
+import { useApi } from "../services";
 
 
 const artistColumns: Array<GridColDef & { field: keyof Artist }> = [
@@ -34,7 +34,7 @@ export function AllArtists() {
 
   const {
     getArtists
-  } = useContext(ApiContext);
+  } = useApi();
 
   const [artists, setArtists] = useState<Artist[] | null>(null);
 
