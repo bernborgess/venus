@@ -5,5 +5,5 @@ export function WaitingFetchCircle() {
     <Container>
       <CircularProgress />
     </Container>
-  )
+  );
 }

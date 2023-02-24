@@ -18,13 +18,13 @@ export function ArtistProfile() {
       if (!id) throw new Error("Id not found!");
       const artistBack = await getArtist(Number(id));
       setArtist(artistBack);
-    }
+    };
     fetch();
 
   }, []);
 
   if (!artist)
-    return <WaitingFetchCircle />
+    return <WaitingFetchCircle />;
 
 
   return (
@@ -38,5 +38,5 @@ export function ArtistProfile() {
 
       </ul>
     </div >
-  )
+  );
 }

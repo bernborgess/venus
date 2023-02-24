@@ -23,8 +23,8 @@ const ApiContext = createContext(apiState);
 const ApiProvider = ({ children }:
   React.PropsWithChildren) => {
 
-  return <ApiContext.Provider value={apiState}>{children}</ApiContext.Provider>
-}
+  return <ApiContext.Provider value={apiState}>{children}</ApiContext.Provider>;
+};
 
 export { ApiContext, ApiProvider };
 

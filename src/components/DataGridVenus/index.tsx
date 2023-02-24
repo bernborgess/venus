@@ -10,5 +10,5 @@ export function DataGridVenus(props: DataGridProps) {
       disableSelectionOnClick
       {...props}
     />
-  )
+  );
 }

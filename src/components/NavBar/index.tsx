@@ -15,8 +15,8 @@ import { Outlet } from "react-router-dom";
 export function NavBar() {
   return (
     <Box sx={{
-      display: 'flex',
-      flexDirection: 'column'
+      display: "flex",
+      flexDirection: "column"
     }}>
       <Box
         sx={{ flexGrow: 1 }}
@@ -33,7 +33,7 @@ export function NavBar() {
               <MenuIcon />
             </IconButton>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              News
+              Venus
             </Typography>
             <Button color="inherit">Login</Button>
           </Toolbar>
@@ -45,13 +45,12 @@ export function NavBar() {
           flexGrow: 1
         }}
       >
-
         <Paper
-          sx={{ padding: 2, minHeight: '75vh' }}
+          sx={{ padding: 2, minHeight: "75vh" }}
         >
           <Outlet />
         </Paper>
       </Box>
     </Box>
-  )
+  );
 }

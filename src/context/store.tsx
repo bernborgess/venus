@@ -20,7 +20,7 @@ const DataProvider = ({ children }:
   return (
     <DataContext.Provider value={dataState}>{children}</DataContext.Provider>
   );
-}
+};
 
 export { DataContext, DataProvider };
 

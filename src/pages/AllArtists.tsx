@@ -7,18 +7,17 @@ import { WaitingFetchCircle } from "../components/WaitingFetchCircle";
 import { Artist } from "../constants/artist";
 import { ApiContext } from "../services";
 
-type Props = {}
 
 const artistColumns: Array<GridColDef & { field: keyof Artist }> = [
-  { field: 'name', headerName: "Nome", flex: 1 },
-  { field: 'phone', headerName: "Telefone", flex: 1 },
-  { field: 'website', headerName: "Site", flex: 1 },
+  { field: "name", headerName: "Nome", flex: 1 },
+  { field: "phone", headerName: "Telefone", flex: 1 },
+  { field: "website", headerName: "Site", flex: 1 },
   {
-    field: 'id', headerName: "Ações", flex: 1,
+    field: "id", headerName: "Ações", flex: 1,
     renderCell: (params: GridCellParams) =>
       <ActionButtons id={params.value} />
   }
-]
+];
 
 function ActionButtons({ id }: { id: number }) {
   const navigate = useNavigate();
@@ -26,12 +25,12 @@ function ActionButtons({ id }: { id: number }) {
     <div onClick={() => navigate(`${id}`)}>
       <EditIcon />
     </div>
-  )
+  );
 }
 
 
 
-export function AllArtists({ }: Props) {
+export function AllArtists() {
 
   const {
     getArtists
@@ -44,23 +43,23 @@ export function AllArtists({ }: Props) {
     const fetch = async () => {
       const artistsBack = await getArtists();
       setArtists(artistsBack);
-    }
+    };
     fetch();
 
   }, []);
 
   if (!artists)
-    return <WaitingFetchCircle />
+    return <WaitingFetchCircle />;
 
   return (
     <div style={{
-      height: '100vh',
-      background: 'white'
+      height: "100vh",
+      background: "white"
     }}>
       <DataGridVenus
         rows={artists}
         columns={artistColumns}
       />
     </div>
-  )
+  );
 }

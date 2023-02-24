@@ -1,4 +1,4 @@
-import { z } from "zod"
+import { z } from "zod";
 
 export interface Address {
   street: string,
@@ -9,7 +9,7 @@ export interface Address {
     lat: string,
     lgn: string
   }
-};
+}
 
 export interface Company {
   name: string,
