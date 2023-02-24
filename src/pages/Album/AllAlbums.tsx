@@ -1,10 +1,13 @@
+import { Button, Stack } from "@mui/material";
 import { GridCellParams, GridColDef } from "@mui/x-data-grid";
 import { useEffect, useState } from "react";
 import { ActionButtons } from "../../components/ActionButtons";
 import { DataGridVenus } from "../../components/DataGridVenus";
 import { WaitingFetchCircle } from "../../components/WaitingFetchCircle";
 import { Album } from "../../constants/album";
+import { useRouting } from "../../routes";
 import { useApi } from "../../services";
+import { Container, TableContent } from "./styles";
 
 
 const albumsColumns: Array<GridColDef & { field: keyof Album }> = [
@@ -23,6 +26,8 @@ export function AllAlbums() {
     getAlbums
   } = useApi();
 
+  const { navigateToAlbumCreate } = useRouting();
+
   const [albums, setAlbums] = useState<Album[] | null>(null);
 
   useEffect(() => {
@@ -35,18 +40,38 @@ export function AllAlbums() {
 
   }, []);
 
-  if (!albums)
-    return <WaitingFetchCircle />;
 
   return (
-    <div style={{
-      height: "100vh",
-      background: "white"
-    }}>
-      <DataGridVenus
-        rows={albums}
-        columns={albumsColumns}
-      />
-    </div>
+
+    <Container>
+      <Stack
+        direction="row"
+        justifyContent="flex-end"
+        alignItems="center"
+        sx={{ marginBottom: 2 }}
+      >
+        <Button
+          variant="contained"
+          sx={{ paddingLeft: 10, paddingRight: 10 }}
+          onClick={navigateToAlbumCreate}
+        >
+          Cadastrar
+        </Button>
+      </Stack>
+
+      <TableContent>
+        {
+          !albums
+            ? <WaitingFetchCircle />
+            :
+            <DataGridVenus
+              rows={albums}
+              columns={albumsColumns}
+            />
+        }
+      </TableContent>
+
+    </Container>
+
   );
 }

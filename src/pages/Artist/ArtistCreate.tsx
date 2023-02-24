@@ -1,3 +1,4 @@
+import { Button } from "@mui/material";
 import { FormEvent, useState } from "react";
 import { ArtistForm } from "../../components/Forms/ArtistForm";
 import { emptyArtist, newArtist } from "../../constants/artist";
@@ -23,6 +24,8 @@ export function ArtistCreate() {
   async function onSubmit(event: FormEvent<HTMLFormElement>, newArtist: newArtist) {
     event.preventDefault();
     try {
+      //! MAY KABOOM
+      // TODO: Validate newArtist with zod
       await addArtist(newArtist);
       prompt("Novo Artista Criado com sucesso!");
     } catch (err: unknown) {
@@ -37,7 +40,13 @@ export function ArtistCreate() {
         artist={artist}
         updateArtist={updateArtist}
         onSubmit={onSubmit}
-      />
+      >
+        <Button
+          type="submit"
+        >
+          Criar
+        </Button>
+      </ArtistForm>
     </div >
   );
 }

@@ -1,4 +1,5 @@
 import { createContext, useContext } from "react";
+import { addAlbum } from "./addAlbum";
 import { addArtist } from "./addArtist";
 import { addTodo } from "./addTodo";
 import { deleteArtist } from "./deleteArtist";
@@ -9,14 +10,17 @@ import { getArtists } from "./getArtists";
 import { getTodosOfArtist } from "./getTodosOfArtist";
 
 const apiState = {
-  addArtist,
-  addTodo,
-  deleteArtist,
-  getAlbums,
-  getAlbumsOfArtist,
-  getArtist,
   getArtists,
-  getTodosOfArtist
+  addArtist,
+  getArtist,
+  deleteArtist,
+
+  getAlbums,
+  addAlbum,
+
+  getAlbumsOfArtist,
+  getTodosOfArtist,
+  addTodo,
 };
 
 const ApiContext = createContext(apiState);
@@ -24,7 +28,11 @@ const ApiContext = createContext(apiState);
 const ApiProvider = ({ children }:
   React.PropsWithChildren) => {
 
-  return <ApiContext.Provider value={apiState}>{children}</ApiContext.Provider>;
+  return (
+    <ApiContext.Provider value={apiState}>
+      {children}
+    </ApiContext.Provider>
+  );
 };
 
 const useApi = () => useContext(ApiContext);
