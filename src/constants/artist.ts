@@ -1,4 +1,3 @@
-import { z } from "zod";
 
 export interface Address {
   street: string,
@@ -30,14 +29,4 @@ export interface newArtist {
 export interface Artist extends newArtist {
   id: number
 }
-
-const ArtistSchema = z.object({
-  name: z.string(),
-  username: z.string(),
-  email: z.string(),
-  phone: z.string(),
-  website: z.string()
-});
-
-type ArtistZ = z.infer<typeof ArtistSchema>
 

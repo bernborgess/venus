@@ -1,10 +1,10 @@
 import { GridCellParams, GridColDef } from "@mui/x-data-grid";
 import { useEffect, useState } from "react";
-import { ActionButtons } from "../components/ActionButtons";
-import { DataGridVenus } from "../components/DataGridVenus";
-import { WaitingFetchCircle } from "../components/WaitingFetchCircle";
-import { Album } from "../constants/album";
-import { useApi } from "../services";
+import { ActionButtons } from "../../components/ActionButtons";
+import { DataGridVenus } from "../../components/DataGridVenus";
+import { WaitingFetchCircle } from "../../components/WaitingFetchCircle";
+import { Album } from "../../constants/album";
+import { useApi } from "../../services";
 
 
 const albumsColumns: Array<GridColDef & { field: keyof Album }> = [

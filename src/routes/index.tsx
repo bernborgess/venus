@@ -1,9 +1,9 @@
 import { createContext, useContext } from "react";
 import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
 import { NavBar } from "../components/NavBar";
-import { AllAlbums } from "../pages/AllAlbums";
-import { AllArtists } from "../pages/AllArtists";
-import { ArtistProfile } from "../pages/ArtistProfile";
+import { AllAlbums } from "../pages/Album/AllAlbums";
+import { AllArtists } from "../pages/Artist/AllArtists";
+import { ArtistProfile } from "../pages/Artist/ArtistProfile";
 import { NotFound } from "../pages/NotFound";
 
 const ARTISTS_ROUTE = "artists";
