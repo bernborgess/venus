@@ -20,11 +20,19 @@ export interface newArtist {
   name: string,
   username: string,
   email: string,
-  address: Address,
+  address?: Address,
   phone: string,
   website: string,
-  company: Company
+  company?: Company
 }
+
+export const emptyArtist: newArtist = {
+  name: "",
+  username: "",
+  email: "",
+  phone: "",
+  website: "",
+};
 
 export interface Artist extends newArtist {
   id: number

@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
 import { NavBar } from "../components/NavBar";
 import { AllAlbums } from "../pages/Album/AllAlbums";
 import { AllArtists } from "../pages/Artist/AllArtists";
+import { ArtistCreate } from "../pages/Artist/ArtistCreate";
 import { ArtistProfile } from "../pages/Artist/ArtistProfile";
 import { NotFound } from "../pages/NotFound";
 
@@ -13,6 +14,7 @@ interface RoutingState {
   navigateToAllArtists: () => void,
   navigateToArtistProfile: (artistId: number) => void,
   navigateToAllAlbums: () => void,
+  navigateToArtistCreate: () => void
 }
 
 const RoutingContext = createContext<RoutingState | undefined>(undefined);
@@ -24,7 +26,8 @@ const RoutingProvider = ({ children }:
   const routingState: RoutingState = {
     navigateToAllArtists: () => navigate(ARTISTS_ROUTE),
     navigateToAllAlbums: () => navigate(ALBUMS_ROUTE),
-    navigateToArtistProfile: (artistId: number) => navigate(`${ARTISTS_ROUTE}/${artistId}`)
+    navigateToArtistProfile: (artistId: number) => navigate(`${ARTISTS_ROUTE}/${artistId}`),
+    navigateToArtistCreate: () => navigate(`${ARTISTS_ROUTE}/create`)
   };
 
   return (
@@ -43,6 +46,10 @@ const RoutesProvider = () => {
             <Route
               path={ARTISTS_ROUTE}
               element={<AllArtists />}
+            />
+            <Route
+              path={`${ARTISTS_ROUTE}/create`}
+              element={<ArtistCreate />}
             />
             <Route
               path={`${ARTISTS_ROUTE}/:id`}

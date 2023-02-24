@@ -5,6 +5,7 @@ import { ActionButtons } from "../../components/ActionButtons";
 import { DataGridVenus } from "../../components/DataGridVenus";
 import { WaitingFetchCircle } from "../../components/WaitingFetchCircle";
 import { Artist } from "../../constants/artist";
+import { useRouting } from "../../routes";
 import { useApi } from "../../services";
 import { Container, TableContent } from "./styles";
 
@@ -26,8 +27,10 @@ const artistColumns: Array<GridColDef & { field: keyof Artist }> = [
 export function AllArtists() {
 
   const {
-    getArtists
+    getArtists,
   } = useApi();
+
+  const { navigateToArtistCreate } = useRouting();
 
   const [artists, setArtists] = useState<Artist[] | null>(null);
 
@@ -53,7 +56,7 @@ export function AllArtists() {
         <Button
           variant="contained"
           sx={{ paddingLeft: 10, paddingRight: 10 }}
-          onClick={() => alert("SDLFKJLS")}
+          onClick={navigateToArtistCreate}
         >
           Cadastrar
         </Button>
