@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
 import { NavBar } from "../components/NavBar";
 import { AllArtists } from "../pages/AllArtists";
 import { ArtistProfile } from "../pages/ArtistProfile";
+import { NotFound } from "../pages/NotFound";
 
 const ALL_ARTISTS_ROUTE = "artists";
 
@@ -12,9 +13,10 @@ const RoutingProvider = ({ children }:
   React.PropsWithChildren) => {
   const navigate = useNavigate();
 
+
   const routingState = {
     navigateToAllArtists: () => navigate(ALL_ARTISTS_ROUTE)
-  }
+  };
 
   return (
     <RoutingContext.Provider value={routingState}>
@@ -39,14 +41,14 @@ const RoutesProvider = () => {
             />
             <Route
               path="*"
-              element={<h1 style={{ color: "red" }}>OOPS</h1>}
+              element={<NotFound />}
             />
           </Route>
         </Routes>
       </RoutingProvider>
     </BrowserRouter>
-  )
-}
+  );
+};
 
 export { RoutesProvider, RoutingContext };
 
