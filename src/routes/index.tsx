@@ -72,9 +72,9 @@ const RoutesProvider = () => {
 
 function useRouting() {
   const context = useContext(RoutingContext);
-  if (context === undefined) {
+  if (context === undefined)
     throw new Error("useRouting must be within RoutesProvider");
-  }
+
   return context;
 }
 

@@ -1,6 +1,7 @@
 import { FormEvent, useState } from "react";
 import { ArtistForm } from "../../components/Forms/ArtistForm";
 import { emptyArtist, newArtist } from "../../constants/artist";
+import { useNotification } from "../../context/notification";
 import { useApi } from "../../services";
 
 export function ArtistCreate() {
@@ -8,6 +9,8 @@ export function ArtistCreate() {
   const {
     addArtist
   } = useApi();
+
+  const { notify, prompt } = useNotification();
 
   const [artist, setArtist] = useState(emptyArtist);
 
@@ -20,15 +23,12 @@ export function ArtistCreate() {
   async function onSubmit(event: FormEvent<HTMLFormElement>, newArtist: newArtist) {
     event.preventDefault();
     try {
-      if (!newArtist.address)
-        throw new Error("YOU FUCKED UP");
       await addArtist(newArtist);
-      console.log("NOVO ARTISTA CRIADO!");
-    } catch (err) {
-      console.log(err);
+      prompt("Novo Artista Criado com sucesso!");
+    } catch (err: unknown) {
+      notify(err);
     }
   }
-
 
   return (
     <div>

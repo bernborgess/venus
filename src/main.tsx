@@ -2,6 +2,7 @@ import { ThemeProvider } from "@emotion/react";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { theme } from "./constants/theme";
+import { NotificationProvider } from "./context/notification";
 import { DataProvider } from "./context/store";
 import "./index.css";
 import { RoutesProvider } from "./routes";
@@ -16,7 +17,9 @@ ReactDOM.createRoot(
       >
         <ApiProvider>
           <DataProvider>
-            <RoutesProvider />
+            <NotificationProvider>
+              <RoutesProvider />
+            </NotificationProvider>
           </DataProvider>
         </ApiProvider>
       </ThemeProvider>
