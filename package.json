@@ -7,6 +7,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
+    "deps": "npx depcruise --config .dependency-cruiser.cjs src",
     "review": "npx depcruise --exclude \"^node_modules\" --output-type dot src | dot -T jpg > review/dependencies.jpg"
   },
   "dependencies": {

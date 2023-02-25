@@ -3,7 +3,7 @@ import { FormEvent, useState } from "react";
 import { AlbumForm } from "../../components/Forms/AlbumForm";
 import { AlbumSchema, emptyAlbum, newAlbum } from "../../constants/album";
 import { useNotification } from "../../context/notification";
-import { useRouting } from "../../routes";
+import { useRouting } from "../../routes/useRouting";
 import { useApi } from "../../services";
 
 export function AlbumCreate() {

@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { ArtistCard } from "../../components/Cards/ArtistCard";
 import { WaitingFetchCircle } from "../../components/WaitingFetchCircle";
 import { Artist } from "../../constants/artist";
-import { useRouting } from "../../routes";
+import { useRouting } from "../../routes/useRouting";
 import { useApi } from "../../services";
 import { Container } from "./styles";
 

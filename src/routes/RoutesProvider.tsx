@@ -1,24 +1,29 @@
-import { createContext } from "react";
+import {
+  BrowserRouter,
+  Route,
+  Routes,
+  useNavigate
+} from "react-router-dom";
 
-export interface RoutingState {
-  navigateToHome: () => void,
+import { RoutingContext, RoutingState } from ".";
 
-  navigateToAllArtists: () => void,
-  navigateToArtistCreate: () => void,
-  navigateToArtistProfile: (artistId: number) => void,
-  navigateToArtistPosts: (artistId: number) => void,
+import { NavBar } from "../components/NavBar";
+import { AlbumCreate } from "../pages/Album/AlbumCreate";
+import { AllAlbums } from "../pages/Album/AllAlbums";
+import { AllArtists } from "../pages/Artist/AllArtists";
+import { ArtistCreate } from "../pages/Artist/ArtistCreate";
+import { ArtistPosts } from "../pages/Artist/ArtistPosts";
+import { ArtistProfile } from "../pages/Artist/ArtistProfile";
+import { Feed } from "../pages/Feed";
+import { Home } from "../pages/Home";
+import { NotFound } from "../pages/NotFound";
+import { PostComments } from "../pages/Post/PostComments";
 
-  navigateToAllAlbums: () => void,
-  navigateToAlbumCreate: () => void,
+const ARTISTS_ROUTE = "artists";
+const ALBUMS_ROUTE = "albums";
+const FEED_ROUTE = "posts";
 
-  navigateToFeed: () => void,
 
-  navigateToPostComments: (postId: number) => void
-}
-
-export const RoutingContext = createContext<RoutingState | undefined>(undefined);
-
-/*
 const RoutingProvider = ({ children }:
   React.PropsWithChildren) => {
   const navigate = useNavigate();
@@ -45,7 +50,8 @@ const RoutingProvider = ({ children }:
   );
 };
 
-const RoutesProvider = () => {
+export const RoutesProvider = () => {
+
   return (
     <BrowserRouter>
       <RoutingProvider>
@@ -103,14 +109,4 @@ const RoutesProvider = () => {
     </BrowserRouter>
   );
 };
-*/
-
-// function useRouting() {
-//   const context = useContext(RoutingContext);
-//   if (context === undefined)
-//     throw new Error("useRouting must be within RoutesProvider");
-
-//   return context;
-// }
-
 

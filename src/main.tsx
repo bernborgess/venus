@@ -5,8 +5,10 @@ import { theme } from "./constants/theme";
 import { NotificationProvider } from "./context/notification";
 import { DataProvider } from "./context/store";
 import "./index.css";
-import { RoutesProvider } from "./routes";
+import { RoutesProvider } from "./routes/RoutesProvider";
 import { ApiProvider } from "./services";
+
+
 
 ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement)
