@@ -1,4 +1,5 @@
 name: Deploy
+
 on:
   push:
     branches:
@@ -23,8 +24,8 @@ jobs:
       - name: Build project
         run: npm run build
 
-      - name: Upload production-ready build files
-        uses: actions/upload-artifacts@v2
+      - name: Upload a Build Artifact
+        uses: actions/upload-artifact@v3.1.2
         with:
           name: production-files
           path: ./dist
