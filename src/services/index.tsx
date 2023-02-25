@@ -1,16 +1,19 @@
 import { createContext, useContext } from "react";
-import { addArtist } from "./addArtist";
-import { addTodo } from "./addTodo";
+
 import { addAlbum } from "./Album/addAlbum";
 import { getAlbums } from "./Album/getAlbums";
-import { deleteArtist } from "./deleteArtist";
-import { getAlbumsOfArtist } from "./getAlbumsOfArtist";
-import { getArtist } from "./getArtist";
-import { getArtistPosts } from "./getArtistPosts";
-import { getArtists } from "./getArtists";
-import { getPostComments } from "./getPostComments";
-import { getPosts } from "./getPosts";
-import { getTodosOfArtist } from "./getTodosOfArtist";
+
+import { addArtist } from "./Artist/addArtist";
+import { deleteArtist } from "./Artist/deleteArtist";
+import { getArtist } from "./Artist/getArtist";
+import { getArtistPosts } from "./Artist/getArtistPosts";
+import { getArtists } from "./Artist/getArtists";
+
+import { getArtistAlbums } from "./Artist/getArtistAlbums";
+import { getArtistTodos } from "./Artist/getArtistTodos";
+import { getPostComments } from "./Post/getPostComments";
+import { getPosts } from "./Post/getPosts";
+import { addTodo } from "./Todo/addTodo";
 
 const apiState = {
   getArtists,
@@ -27,8 +30,8 @@ const apiState = {
 
   getPostComments,
 
-  getAlbumsOfArtist,
-  getTodosOfArtist,
+  getArtistAlbums,
+  getArtistTodos,
   addTodo,
 };
 

@@ -7,10 +7,9 @@ import { Artist } from "../../constants/artist";
 import { Post } from "../../constants/post";
 import { useNotification } from "../../context/notification";
 import { useApi } from "../../services";
-import { getArtist } from "../../services/getArtist";
 
 export function ArtistPosts() {
-  const { getArtistPosts } = useApi();
+  const { getArtist, getArtistPosts } = useApi();
 
   const [artist, setArtist] = useState<Artist | null>(null);
   const [posts, setPosts] = useState<Post[] | null>(null);
