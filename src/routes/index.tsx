@@ -5,10 +5,12 @@ import { AlbumCreate } from "../pages/Album/AlbumCreate";
 import { AllAlbums } from "../pages/Album/AllAlbums";
 import { AllArtists } from "../pages/Artist/AllArtists";
 import { ArtistCreate } from "../pages/Artist/ArtistCreate";
+import { ArtistPosts } from "../pages/Artist/ArtistPosts";
 import { ArtistProfile } from "../pages/Artist/ArtistProfile";
 import { Feed } from "../pages/Feed";
 import { Home } from "../pages/Home";
 import { NotFound } from "../pages/NotFound";
+import { PostComments } from "../pages/Post/PostComments";
 
 const ARTISTS_ROUTE = "artists";
 const ALBUMS_ROUTE = "albums";
@@ -20,11 +22,14 @@ interface RoutingState {
   navigateToAllArtists: () => void,
   navigateToArtistCreate: () => void,
   navigateToArtistProfile: (artistId: number) => void,
+  navigateToArtistPosts: (artistId: number) => void,
 
   navigateToAllAlbums: () => void,
   navigateToAlbumCreate: () => void,
 
-  navigateToFeed: () => void
+  navigateToFeed: () => void,
+
+  navigateToPostComments: (postId: number) => void
 }
 
 const RoutingContext = createContext<RoutingState | undefined>(undefined);
@@ -37,13 +42,15 @@ const RoutingProvider = ({ children }:
     navigateToHome: () => navigate(""),
 
     navigateToAllArtists: () => navigate(ARTISTS_ROUTE),
+    navigateToArtistCreate: () => navigate(`${ARTISTS_ROUTE} /create`),
     navigateToArtistProfile: (artistId: number) => navigate(`${ARTISTS_ROUTE}/${artistId}`),
-    navigateToArtistCreate: () => navigate(`${ARTISTS_ROUTE}/create`),
+    navigateToArtistPosts: (artistId: number) => navigate(`${ARTISTS_ROUTE}/${artistId}/posts`),
 
     navigateToAllAlbums: () => navigate(ALBUMS_ROUTE),
     navigateToAlbumCreate: () => navigate(`${ALBUMS_ROUTE}/create`),
 
-    navigateToFeed: () => navigate(FEED_ROUTE)
+    navigateToFeed: () => navigate(FEED_ROUTE),
+    navigateToPostComments: (postId: number) => navigate(`${FEED_ROUTE}/${postId}/comments`)
   };
 
   return (
@@ -77,6 +84,10 @@ const RoutesProvider = () => {
               path={`${ARTISTS_ROUTE}/:id`}
               element={<ArtistProfile />}
             />
+            <Route
+              path={`${ARTISTS_ROUTE}/:id/posts`}
+              element={<ArtistPosts />}
+            />
 
             <Route
               path={ALBUMS_ROUTE}
@@ -90,6 +101,11 @@ const RoutesProvider = () => {
             <Route
               path={FEED_ROUTE}
               element={<Feed />}
+            />
+
+            <Route
+              path={`${FEED_ROUTE}/:id/comments`}
+              element={<PostComments />}
             />
 
             <Route

@@ -1,8 +1,5 @@
 import {
-  Favorite as FavoriteIcon,
-  FavoriteBorder as FavoriteBorderIcon,
-  MoreVert as MoreVertIcon,
-  Share as ShareIcon
+  Comment as CommentIcon, MoreVert as MoreVertIcon
 } from "@mui/icons-material";
 
 import {
@@ -10,26 +7,35 @@ import {
   Card,
   CardActions,
   CardContent,
-  CardHeader, Checkbox,
-  IconButton,
+  CardHeader, IconButton,
   Typography
 } from "@mui/material";
+import { Artist } from "../../constants/artist";
 import { Post } from "../../constants/post";
+import { useRouting } from "../../routes";
 
+type Props = {
+  post: Post,
+  artist?: Artist
+}
 
 export function PostCard({
-  userId,
-  id,
-  title,
-  body
-}: Post) {
+  post: {
+    id,
+    title,
+    body
+  },
+  artist
+}: Props) {
+
+  const { navigateToPostComments } = useRouting();
 
   return (
     <Card sx={{ m: 5 }}>
       <CardHeader
         avatar={
           <Avatar sx={{ bgcolor: "blue" }} aria-label="recipe">
-            BB
+            {artist?.username?.charAt(0) || "U"}
           </Avatar>
         }
         action={
@@ -43,13 +49,6 @@ export function PostCard({
           textTransform: "capitalize"
         }}
       />
-      {/* <CardMedia
-        component="img"
-        height="20%"
-        image="https://www.universetoday.com/wp-content/uploads/2013/10/milky_way.jpg"
-        alt="ALT"
-        sizes="small"
-      /> */}
       <CardContent >
         <Typography
           variant="body2"
@@ -59,14 +58,11 @@ export function PostCard({
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites">
-          <Checkbox
-            icon={<FavoriteBorderIcon />}
-            checkedIcon={<FavoriteIcon sx={{ color: "red" }} />}
-          />
-        </IconButton>
-        <IconButton aria-label="share">
-          <ShareIcon />
+        <IconButton
+          aria-label="comments"
+          onClick={() => navigateToPostComments(id)}
+        >
+          <CommentIcon />
         </IconButton>
       </CardActions>
     </Card>

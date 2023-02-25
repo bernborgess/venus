@@ -1,6 +1,7 @@
 import {
   Favorite as FavoriteIcon,
   FavoriteBorder as FavoriteBorderIcon,
+  Message as MessageIcon,
   MoreVert as MoreVertIcon,
   Share as ShareIcon
 } from "@mui/icons-material";
@@ -18,7 +19,8 @@ import { useRouting } from "../../routes";
 
 
 export function ArtistCard(artist: Artist) {
-  const { navigateToArtistProfile } = useRouting();
+  const { navigateToArtistProfile,
+    navigateToArtistPosts } = useRouting();
   return (
     <Card sx={{ m: 5 }}>
       <CardHeader
@@ -57,6 +59,13 @@ export function ArtistCard(artist: Artist) {
       </CardContent>
 
       <CardActions disableSpacing>
+        <IconButton
+
+          onClick={() => navigateToArtistPosts(artist.id)}
+        >
+          <MessageIcon />
+
+        </IconButton>
         <IconButton aria-label="add to favorites">
           <Checkbox
             icon={<FavoriteBorderIcon />}

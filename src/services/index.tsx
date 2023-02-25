@@ -6,7 +6,9 @@ import { deleteArtist } from "./deleteArtist";
 import { getAlbums } from "./getAlbums";
 import { getAlbumsOfArtist } from "./getAlbumsOfArtist";
 import { getArtist } from "./getArtist";
+import { getArtistPosts } from "./getArtistPosts";
 import { getArtists } from "./getArtists";
+import { getPostComments } from "./getPostComments";
 import { getPosts } from "./getPosts";
 import { getTodosOfArtist } from "./getTodosOfArtist";
 
@@ -16,10 +18,14 @@ const apiState = {
   getArtist,
   deleteArtist,
 
+  getArtistPosts,
+
   getAlbums,
   addAlbum,
 
   getPosts,
+
+  getPostComments,
 
   getAlbumsOfArtist,
   getTodosOfArtist,

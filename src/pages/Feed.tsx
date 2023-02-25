@@ -29,7 +29,7 @@ export function Feed() {
         posts.map((post, index) => (
           <PostCard
             key={index}
-            {...post}
+            post={post}
           />
         ))}
     </Box>
