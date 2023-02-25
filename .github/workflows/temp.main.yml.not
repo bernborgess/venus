@@ -1,0 +1,25 @@
+name: CI
+# TODO: Wait for Mrad's class on CI CD and deploy
+on:
+  push:
+    branches: [master]
+  pull_requets:
+    branches: [master]
+  workflow_dispatch:
+    inputs:
+      loglevel:
+        description: "Log level"
+        required: true
+        default: "warning"
+        type: choice
+        options:
+          - info
+          - warning
+          - debug
+
+jobs:
+  setup_job:
+    runs-on: ubuntu-latest
+
+    outputs:
+      ENVIRONMENT:
