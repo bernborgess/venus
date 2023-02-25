@@ -9,11 +9,11 @@ import { getArtist } from "./Artist/getArtist";
 import { getArtistPosts } from "./Artist/getArtistPosts";
 import { getArtists } from "./Artist/getArtists";
 
-import { addTodo } from "./addTodo";
 import { getArtistAlbums } from "./Artist/getArtistAlbums";
 import { getArtistTodos } from "./Artist/getArtistTodos";
-import { getPostComments } from "./getPostComments";
-import { getPosts } from "./getPosts";
+import { getPostComments } from "./Post/getPostComments";
+import { getPosts } from "./Post/getPosts";
+import { addTodo } from "./Todo/addTodo";
 
 const apiState = {
   getArtists,
