@@ -1,3 +1,10 @@
+import { z } from "zod";
+
+const AlbumSchema = z.object({
+  title: z.string()
+});
+
+
 
 export interface newAlbum {
   title: string

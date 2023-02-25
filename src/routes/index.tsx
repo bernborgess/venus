@@ -6,6 +6,7 @@ import { AllAlbums } from "../pages/Album/AllAlbums";
 import { AllArtists } from "../pages/Artist/AllArtists";
 import { ArtistCreate } from "../pages/Artist/ArtistCreate";
 import { ArtistProfile } from "../pages/Artist/ArtistProfile";
+import { Home } from "../pages/Home";
 import { NotFound } from "../pages/NotFound";
 
 const ARTISTS_ROUTE = "artists";
@@ -48,6 +49,12 @@ const RoutesProvider = () => {
       <RoutingProvider>
         <Routes>
           <Route path="*" element={<NavBar />}>
+
+            <Route
+              index
+              element={<Home />}
+            />
+
             <Route
               path={ARTISTS_ROUTE}
               element={<AllArtists />}
