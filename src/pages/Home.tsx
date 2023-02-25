@@ -25,7 +25,7 @@ export function Home() {
     <HomeContainer>
       <HomeTitle>Venus</HomeTitle>
       <HomeMessage>
-        O sistema dos artistas das estrelas
+        O sistema dos artistas das estrelas 🌟
       </HomeMessage>
     </HomeContainer>
   );
