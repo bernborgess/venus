@@ -19,14 +19,16 @@ import { Home } from "../pages/Home";
 import { NotFound } from "../pages/NotFound";
 import { PostComments } from "../pages/Post/PostComments";
 
+const BASE_PATH = "venus";
 const ARTISTS_ROUTE = "artists";
 const ALBUMS_ROUTE = "albums";
 const FEED_ROUTE = "posts";
 
-
 const RoutingProvider = ({ children }:
   React.PropsWithChildren) => {
-  const navigate = useNavigate();
+  const navigate_raw = useNavigate();
+  const navigate = (route: string) => navigate_raw(`${BASE_PATH}/${route}`);
+
 
   const routingState: RoutingState = {
     navigateToHome: () => navigate(""),
@@ -56,7 +58,7 @@ export const RoutesProvider = () => {
     <BrowserRouter>
       <RoutingProvider>
         <Routes>
-          <Route path="*" element={<NavBar />}>
+          <Route path={BASE_PATH} element={<NavBar />}>
 
             <Route
               index
@@ -98,11 +100,11 @@ export const RoutesProvider = () => {
               path={`${FEED_ROUTE}/:id/comments`}
               element={<PostComments />}
             />
-
             <Route
               path="*"
               element={<NotFound />}
             />
+
           </Route>
         </Routes>
       </RoutingProvider>
