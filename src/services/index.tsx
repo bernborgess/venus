@@ -1,9 +1,9 @@
 import { createContext, useContext } from "react";
-import { addAlbum } from "./addAlbum";
 import { addArtist } from "./addArtist";
 import { addTodo } from "./addTodo";
+import { addAlbum } from "./Album/addAlbum";
+import { getAlbums } from "./Album/getAlbums";
 import { deleteArtist } from "./deleteArtist";
-import { getAlbums } from "./getAlbums";
 import { getAlbumsOfArtist } from "./getAlbumsOfArtist";
 import { getArtist } from "./getArtist";
 import { getArtistPosts } from "./getArtistPosts";
