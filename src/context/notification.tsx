@@ -13,12 +13,16 @@ import {
   useContext,
   useState
 } from "react";
+import { z, ZodError } from "zod";
 
-export type SupportedError = AxiosError | Error;
+export type SupportedError =
+  AxiosError | ZodError | Error;
 
 export function isSupportedError(candidate: unknown)
   : candidate is SupportedError {
   if (isAxiosError(candidate))
+    return true;
+  if (candidate instanceof z.ZodError)
     return true;
   if (candidate instanceof Error)
     return true;
@@ -83,12 +87,15 @@ const NotificationProvider = ({ children }:
 
   function notify(err: unknown) {
     setSeverity("warning");
+
     if (isSupportedError(err)) {
-      if (isAxiosError(err)) {
+      if (isAxiosError(err))
         setMessage(err.message);
-      } else {
+      else if (err instanceof z.ZodError)
+        setMessage(err.issues[0].message);
+      else
         setMessage(err.message);
-      }
+
       setIsNotificationOpen(true);
     }
     else {

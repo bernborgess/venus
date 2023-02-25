@@ -77,8 +77,6 @@ const RoutesProvider = () => {
               element={<AlbumCreate />}
             />
 
-
-
             <Route
               path="*"
               element={<NotFound />}

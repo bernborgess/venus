@@ -1,8 +1,9 @@
 import { Button } from "@mui/material";
 import { FormEvent, useState } from "react";
 import { AlbumForm } from "../../components/Forms/AlbumForm";
-import { emptyAlbum, newAlbum } from "../../constants/album";
+import { AlbumSchema, emptyAlbum, newAlbum } from "../../constants/album";
 import { useNotification } from "../../context/notification";
+import { useRouting } from "../../routes";
 import { useApi } from "../../services";
 
 export function AlbumCreate() {
@@ -11,7 +12,14 @@ export function AlbumCreate() {
     addAlbum
   } = useApi();
 
-  const { notify, prompt } = useNotification();
+  const {
+    navigateToAllAlbums
+  } = useRouting();
+
+  const {
+    notify,
+    prompt
+  } = useNotification();
 
   const [album, setAlbum] = useState(emptyAlbum);
 
@@ -21,13 +29,16 @@ export function AlbumCreate() {
     setAlbum({ ...album, ...partialAlbum });
   }
 
-  async function onSubmit(event: FormEvent<HTMLFormElement>, newAlbum: newAlbum) {
+  async function onSubmit(
+    event: FormEvent<HTMLFormElement>,
+    newAlbum: newAlbum
+  ) {
     event.preventDefault();
     try {
-      //! MAY KABOOM
-      // TODO: Validate newAlbum with zod
+      AlbumSchema.parse(newAlbum);
       await addAlbum(newAlbum);
-      prompt("Novo Albuma Criado com sucesso!");
+      prompt("Novo Álbum Criado com sucesso!");
+      navigateToAllAlbums();
     } catch (err: unknown) {
       notify(err);
     }
@@ -43,6 +54,7 @@ export function AlbumCreate() {
       >
         <Button
           type="submit"
+          variant="contained"
         >
           Criar
         </Button>

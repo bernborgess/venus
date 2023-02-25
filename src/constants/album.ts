@@ -1,14 +1,12 @@
 import { z } from "zod";
 
-const AlbumSchema = z.object({
+export const AlbumSchema = z.object({
   title: z.string()
-});
+    .min(1, "O título não pode ser vazio")
+    .max(40, "O título deve ter no máximo 40 caracteres")
+}).strict();
 
-
-
-export interface newAlbum {
-  title: string
-}
+export type newAlbum = z.infer<typeof AlbumSchema>;
 
 export const emptyAlbum: newAlbum = {
   title: ""
