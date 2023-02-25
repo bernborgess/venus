@@ -194,16 +194,12 @@ module.exports = {
       comment:
         "Only files inside src/routes are allowed to import from src/routes/index.tsx",
       from: {
-        path: "^src/(?!routes/)",
+        path: "^src/",
+        pathNot: "^src/routes/"
       },
       to: {
         path: "src/routes/index.tsx",
       },
-      // allowed: [
-      //   {
-      //     path: "^src/routes/",
-      //   },
-      // ],
     }
   ],
   options: {
