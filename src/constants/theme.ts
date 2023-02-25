@@ -3,7 +3,7 @@ import { red } from "@mui/material/colors";
 import { ptBR } from "@mui/material/locale";
 import { createTheme } from "@mui/material/styles";
 
-
+// Comment 1
 export const theme = createTheme({
   palette: {
     primary: {
