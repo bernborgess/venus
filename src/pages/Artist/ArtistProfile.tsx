@@ -7,9 +7,7 @@ import { useApi } from "../../services";
 
 export function ArtistProfile() {
   const { id } = useParams();
-  const {
-    getArtist
-  } = useApi();
+  const { getArtist } = useApi();
 
   const [artist, setArtist] = useState<Artist | null>(null);
 
@@ -26,7 +24,6 @@ export function ArtistProfile() {
       setArtist(artistBack);
     };
     fetch();
-
   }, []);
 
   if (!artist)
@@ -38,10 +35,6 @@ export function ArtistProfile() {
         title="Perfil de Artista"
         artist={artist}
         updateArtist={updateArtist}
-        onSubmit={(e, a) => {
-          e.preventDefault();
-          console.log(`Hi ${a.name}`);
-        }}
       />
     </div >
   );

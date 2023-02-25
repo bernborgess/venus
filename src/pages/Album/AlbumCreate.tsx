@@ -8,24 +8,14 @@ import { useApi } from "../../services";
 
 export function AlbumCreate() {
 
-  const {
-    addAlbum
-  } = useApi();
-
-  const {
-    navigateToAllAlbums
-  } = useRouting();
-
-  const {
-    notify,
-    prompt
-  } = useNotification();
+  const { addAlbum } = useApi();
+  const { navigateToAllAlbums } = useRouting();
+  const { notify, prompt } = useNotification();
 
   const [album, setAlbum] = useState(emptyAlbum);
 
   function updateAlbum(partialAlbum: Partial<newAlbum>) {
-    if (!album)
-      return;
+    if (!album) return;
     setAlbum({ ...album, ...partialAlbum });
   }
 
