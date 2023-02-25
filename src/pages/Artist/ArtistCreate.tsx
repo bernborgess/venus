@@ -3,7 +3,7 @@ import { FormEvent, useState } from "react";
 import { ArtistForm } from "../../components/Forms/ArtistForm";
 import { ArtistSchema, emptyArtist, newArtist } from "../../constants/artist";
 import { useNotification } from "../../context/notification";
-import { useRouting } from "../../routes";
+import { useRouting } from "../../routes/useRouting";
 import { useApi } from "../../services";
 
 export function ArtistCreate() {

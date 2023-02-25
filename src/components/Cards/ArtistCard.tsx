@@ -15,7 +15,7 @@ import {
   Typography
 } from "@mui/material";
 import { Artist } from "../../constants/artist";
-import { useRouting } from "../../routes";
+import { useRouting } from "../../routes/useRouting";
 
 
 export function ArtistCard(artist: Artist) {

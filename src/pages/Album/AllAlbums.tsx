@@ -5,7 +5,7 @@ import { ActionButtons } from "../../components/ActionButtons";
 import { DataGridVenus } from "../../components/DataGridVenus";
 import { WaitingFetchCircle } from "../../components/WaitingFetchCircle";
 import { Album } from "../../constants/album";
-import { useRouting } from "../../routes";
+import { useRouting } from "../../routes/useRouting";
 import { useApi } from "../../services";
 import { Container, TableContent } from "./styles";
 

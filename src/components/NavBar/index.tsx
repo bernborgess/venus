@@ -12,7 +12,7 @@ import {
   useState
 } from "react";
 import { Outlet } from "react-router-dom";
-import { useRouting } from "../../routes";
+import { useRouting } from "../../routes/useRouting";
 
 interface PageChip {
   title: string,

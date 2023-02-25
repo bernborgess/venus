@@ -12,7 +12,7 @@ import {
 } from "@mui/material";
 import { Artist } from "../../constants/artist";
 import { Post } from "../../constants/post";
-import { useRouting } from "../../routes";
+import { useRouting } from "../../routes/useRouting";
 
 type Props = {
   post: Post,
