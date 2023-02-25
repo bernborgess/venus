@@ -20,11 +20,15 @@ interface PageChip {
 }
 
 function Header() {
-  const { navigateToAllArtists, navigateToAllAlbums } = useRouting();
+  const { navigateToHome,
+    navigateToAllArtists,
+    navigateToAllAlbums,
+    navigateToFeed } = useRouting();
 
   const pageChips: PageChip[] = [
-    { title: "artists", navigateTo: () => navigateToAllArtists() },
-    { title: "albums", navigateTo: () => navigateToAllAlbums() }
+    { title: "artists", navigateTo: navigateToAllArtists },
+    { title: "albums", navigateTo: navigateToAllAlbums },
+    { title: "feed", navigateTo: navigateToFeed }
   ];
 
   const [anchorElNav, setAnchorElNav] = useState<HTMLElement | null>(null);
@@ -79,7 +83,15 @@ function Header() {
               </MenuItem>
             ))}
           </Menu>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          <Typography
+            variant="h6"
+            component="div"
+            sx={{
+              flexGrow: 1,
+              cursor: "pointer"
+            }}
+            onClick={navigateToHome}
+          >
             Venus
           </Typography>
         </Toolbar>

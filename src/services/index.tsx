@@ -7,6 +7,7 @@ import { getAlbums } from "./getAlbums";
 import { getAlbumsOfArtist } from "./getAlbumsOfArtist";
 import { getArtist } from "./getArtist";
 import { getArtists } from "./getArtists";
+import { getPosts } from "./getPosts";
 import { getTodosOfArtist } from "./getTodosOfArtist";
 
 const apiState = {
@@ -17,6 +18,8 @@ const apiState = {
 
   getAlbums,
   addAlbum,
+
+  getPosts,
 
   getAlbumsOfArtist,
   getTodosOfArtist,

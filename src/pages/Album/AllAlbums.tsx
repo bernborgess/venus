@@ -22,9 +22,7 @@ const albumsColumns: Array<GridColDef & { field: keyof Album }> = [
 
 export function AllAlbums() {
 
-  const {
-    getAlbums
-  } = useApi();
+  const { getAlbums } = useApi();
 
   const { navigateToAlbumCreate } = useRouting();
 

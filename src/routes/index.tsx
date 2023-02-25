@@ -6,19 +6,25 @@ import { AllAlbums } from "../pages/Album/AllAlbums";
 import { AllArtists } from "../pages/Artist/AllArtists";
 import { ArtistCreate } from "../pages/Artist/ArtistCreate";
 import { ArtistProfile } from "../pages/Artist/ArtistProfile";
+import { Feed } from "../pages/Feed";
 import { Home } from "../pages/Home";
 import { NotFound } from "../pages/NotFound";
 
 const ARTISTS_ROUTE = "artists";
 const ALBUMS_ROUTE = "albums";
+const FEED_ROUTE = "posts";
 
 interface RoutingState {
+  navigateToHome: () => void,
+
   navigateToAllArtists: () => void,
   navigateToArtistCreate: () => void,
   navigateToArtistProfile: (artistId: number) => void,
 
   navigateToAllAlbums: () => void,
-  navigateToAlbumCreate: () => void
+  navigateToAlbumCreate: () => void,
+
+  navigateToFeed: () => void
 }
 
 const RoutingContext = createContext<RoutingState | undefined>(undefined);
@@ -28,12 +34,16 @@ const RoutingProvider = ({ children }:
   const navigate = useNavigate();
 
   const routingState: RoutingState = {
+    navigateToHome: () => navigate(""),
+
     navigateToAllArtists: () => navigate(ARTISTS_ROUTE),
     navigateToArtistProfile: (artistId: number) => navigate(`${ARTISTS_ROUTE}/${artistId}`),
     navigateToArtistCreate: () => navigate(`${ARTISTS_ROUTE}/create`),
 
     navigateToAllAlbums: () => navigate(ALBUMS_ROUTE),
-    navigateToAlbumCreate: () => navigate(`${ALBUMS_ROUTE}/create`)
+    navigateToAlbumCreate: () => navigate(`${ALBUMS_ROUTE}/create`),
+
+    navigateToFeed: () => navigate(FEED_ROUTE)
   };
 
   return (
@@ -75,6 +85,11 @@ const RoutesProvider = () => {
             <Route
               path={`${ALBUMS_ROUTE}/create`}
               element={<AlbumCreate />}
+            />
+
+            <Route
+              path={FEED_ROUTE}
+              element={<Feed />}
             />
 
             <Route
