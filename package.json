@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "lint": "eslint ./src/**/*.tsx",
     "build": "tsc && vite build",
     "preview": "vite preview",
     "deps": "npx depcruise --config .dependency-cruiser.cjs src",

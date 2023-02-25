@@ -42,5 +42,10 @@
         "code": 100
       }
     ]
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
   }
 }
