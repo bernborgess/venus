@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "lint": "eslint ./src --ext .tsx --ext .ts",
     "build": "tsc && vite build",
     "preview": "vite preview",
     "deps": "npx depcruise --config .dependency-cruiser.cjs src",
@@ -35,6 +36,7 @@
     "eslint-plugin-n": "^15.6.1",
     "eslint-plugin-promise": "^6.1.1",
     "eslint-plugin-react": "^7.32.2",
+    "husky": "^8.0.3",
     "typescript": "^4.9.5",
     "vite": "^4.1.0"
   }

@@ -32,7 +32,7 @@ const RoutingProvider = ({ children }:
     navigateToHome: () => navigate(""),
 
     navigateToAllArtists: () => navigate(ARTISTS_ROUTE),
-    navigateToArtistCreate: () => navigate(`${ARTISTS_ROUTE} /create`),
+    navigateToArtistCreate: () => navigate(`${ARTISTS_ROUTE}/create`),
     navigateToArtistProfile: (artistId: number) => navigate(`${ARTISTS_ROUTE}/${artistId}`),
     navigateToArtistPosts: (artistId: number) => navigate(`${ARTISTS_ROUTE}/${artistId}/posts`),
 
