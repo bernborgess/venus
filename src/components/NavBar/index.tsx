@@ -1,5 +1,4 @@
 import {
-  ExitToApp as ExitToAppIcon,
   Menu as MenuIcon,
   PersonOutline as PersonOutlineIcon,
   Settings as SettingsIcon
@@ -11,7 +10,7 @@ import {
   CssBaseline,
   Drawer as MuiDrawer,
   IconButton,
-  List, ListItem, ListItemButton, ListItemIcon, ListItemText, Toolbar
+  List, ListItem, ListItemButton, ListItemIcon, ListItemText, Menu, MenuItem, Toolbar
 } from "@mui/material";
 
 import {
@@ -23,16 +22,16 @@ import {
   UserAvatar,
   UserDataCard,
   UserDataList,
-  UserLabel, UserModalButton,
-  UserModalContainer,
-  UserModalLabel, UserSettingsButton
+  UserLabel, UserSettingsButton
 } from "./styles";
 
 import {
+  MouseEvent,
   useState
 } from "react";
 
 import { Outlet } from "react-router-dom";
+import { useNotification } from "../../context/notification";
 
 
 const drawerWidth = 240;
@@ -52,6 +51,27 @@ function Drawer() {
     name: "User Name"
   };
 
+  const { inform, notify } = useNotification();
+
+  const [userModalAnchorEl, setUserModalAnchorEl] =
+    useState<HTMLElement | null>(null);
+
+  const handleOpenUserModal = (event: MouseEvent<HTMLElement>) => {
+    setUserModalAnchorEl(event.currentTarget);
+  };
+
+  const handleCloseUserModal = () => {
+    setUserModalAnchorEl(null);
+  };
+
+  function provoke() {
+    try {
+      throw new Error("You asked for it...");
+    } catch (err: unknown) {
+      notify(err);
+    }
+  }
+
   return (
     <div>
       <Box
@@ -64,7 +84,7 @@ function Drawer() {
       >
         <img
           className="logo"
-          src="../../../public/venus.svg"
+          src="/venus.svg"
           style={{
             height: 75
           }}
@@ -101,33 +121,43 @@ function Drawer() {
             </UserLabel>
 
             <UserSettingsButton
-              onClick={toggleIsUserModalOpen}
+              size="large"
+              aria-label="account of current user"
+              aria-controls="menu-appbar"
+              aria-haspopup="true"
+              onClick={handleOpenUserModal}
+              color="inherit"
             >
               <SettingsIcon />
             </UserSettingsButton>
 
-            <UserModalContainer
-              open={isUserModalOpen}
+            <Menu
+              id="menu-appbar"
+              anchorEl={userModalAnchorEl}
+              anchorOrigin={{
+                vertical: "top",
+                horizontal: "right",
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "right",
+              }}
+              open={Boolean(userModalAnchorEl)}
+              onClose={handleCloseUserModal}
             >
-              <UserModalButton
-                onClick={() => alert("navigating to user profile")}
+              <MenuItem
+                onClick={() => inform("Not implemented")}
               >
-                <MenuIcon />
-                <UserModalLabel>
-                  My Profile
-                </UserModalLabel>
-              </UserModalButton>
-
-              <UserModalButton
-                onClick={() => alert("logout!")}
+                Profile
+              </MenuItem>
+              <MenuItem
+                onClick={provoke}
               >
-                <ExitToAppIcon />
-                <UserModalLabel>
-                  Exit
-                </UserModalLabel>
-              </UserModalButton>
+                Exit
+              </MenuItem>
 
-            </UserModalContainer>
+            </Menu>
 
           </UserDataCard>
         </UserDataList>
