@@ -1,11 +1,11 @@
 import {
   Build as BuildIcon,
-  InsertDriveFile as InsertDriveFileIcon,
-  Person as PersonIcon
+  InsertDriveFile as InsertDriveFileIcon
 } from "@mui/icons-material";
 
 import { SvgIconTypeMap } from "@mui/material";
 import { OverridableComponent } from "@mui/material/OverridableComponent";
+import { useRouting } from "../../routes/useRouting";
 
 type MuiIcon = OverridableComponent<
   SvgIconTypeMap<unknown, "svg">>
@@ -13,38 +13,37 @@ type MuiIcon = OverridableComponent<
     muiName: string;
   }
 
-export type UserRole = "artist" | "admin"
-  | "user" | "member";
+export type UserRole = "artist" | "admin";
 
 type Drawer = {
   title: string,
-  path: string,
-  icon: MuiIcon,
+  navigate: () => void,
+  Icon: MuiIcon,
   cName: string,
   userRoles: UserRole[]
 }
 
-export const navbarDrawerData
-  : Drawer[] = [
+export function navbarDrawerData(): Drawer[] {
+
+  const {
+    navigateToAllAlbums,
+    navigateToAllArtists
+  } = useRouting();
+
+  return [
     {
-      title: "Projetos",
-      path: "/",
-      icon: BuildIcon,
+      title: "Artists",
+      navigate: navigateToAllArtists,
+      Icon: BuildIcon,
       cName: "nav-text",
-      userRoles: ["user", "member", "admin"]
+      userRoles: ["admin"]
     },
     {
-      title: "Contratos",
-      path: "/contracts",
-      icon: InsertDriveFileIcon,
+      title: "Albums",
+      navigate: navigateToAllAlbums,
+      Icon: InsertDriveFileIcon,
       cName: "nav-text",
-      userRoles: ["member", "admin"]
-    },
-    {
-      title: "Usuários",
-      path: "/users",
-      icon: PersonIcon,
-      cName: "nav-text",
-      userRoles: ["member", "admin"]
+      userRoles: ["artist", "admin"]
     },
   ];
+}

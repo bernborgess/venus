@@ -11,12 +11,7 @@ import {
   CssBaseline,
   Drawer as MuiDrawer,
   IconButton,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
-  Toolbar
+  List, ListItem, ListItemButton, ListItemIcon, ListItemText, Toolbar
 } from "@mui/material";
 
 import {
@@ -37,9 +32,7 @@ import {
   useState
 } from "react";
 
-import {
-  Link, Outlet
-} from "react-router-dom";
+import { Outlet } from "react-router-dom";
 
 
 const drawerWidth = 240;
@@ -71,33 +64,29 @@ function Drawer() {
       >
         <img
           className="logo"
-          src="https://www.logodesign.net/images/home-page-logo-03.png"
+          src="../../../public/venus.svg"
           style={{
-            height: 100
+            height: 75
           }}
           alt="Logo"
         />
       </Box>
       <List>
 
-        {false && navbarDrawerData
-          .filter((item) => item.userRoles.includes(currentUser.role))
-          .map((item, index) => (
-            <Link
-              to={item.path}
+        {navbarDrawerData()
+          .filter(({ userRoles }) => userRoles.includes(currentUser.role))
+          .map(({ navigate, title, Icon }, index) => (
+            <ListItem
               key={index}
-              style={{ textDecoration: "none", color: "gray" }}
+              onClick={navigate}
             >
-              <ListItem >
-                <ListItemButton />
-                <ListItemIcon
-                  style={{ marginLeft: 18 }}
-                >
-                  {item.icon({})}
+              <ListItemButton>
+                <ListItemIcon>
+                  <Icon />
                 </ListItemIcon>
-                <ListItemText primary={item.title} />
-              </ListItem>
-            </Link>
+                <ListItemText primary={title} />
+              </ListItemButton>
+            </ListItem>
           ))}
 
         <UserDataList>
@@ -118,7 +107,7 @@ function Drawer() {
             </UserSettingsButton>
 
             <UserModalContainer
-              style={isUserModalOpen ? {} : { display: "none" }}
+              open={isUserModalOpen}
             >
               <UserModalButton
                 onClick={() => alert("navigating to user profile")}

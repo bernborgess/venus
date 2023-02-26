@@ -58,7 +58,7 @@ export const UserSettingsButton =
   }));
 
 export const UserModalContainer =
-  styled("div")(({ theme }) => ({
+  styled("div")<{ open: boolean }>(({ open }) => ({
     top: 50,
     left: 20,
     width: 168,
@@ -66,7 +66,7 @@ export const UserModalContainer =
     position: "absolute",
     borderRadius: 10,
     boxShadow: "0px 0px 6px rgba(0, 0, 0, 0.28)",
-    display: "flex",
+    display: open ? "flex" : "none",
     flexDirection: "column",
     justifyContent: "space-evenly",
     color: "gray"
