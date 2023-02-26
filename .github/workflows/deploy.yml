@@ -5,9 +5,28 @@ on:
     branches:
       - master
 jobs:
+  setup_job:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Set env variables from master branch
+        id: set_env_master
+        run: |
+          if [ ${{ github.ref }} == 'refs/heads/main' ]; then
+            echo "::set-output name=ENVIRONMENT::production"
+          else
+            echo "::set-output name=ENVIRONMENT::unknown"
+          fi
+        shell: bash
+
   build:
     name: Build
     runs-on: ubuntu-latest
+
+    needs: setup_job
+
+    env:
+      ENVIRONMENT: ${{ needs.setup_job.outputs.ENVIRONMENT }}
 
     steps:
       - name: Checkout repo
@@ -18,14 +37,18 @@ jobs:
         with:
           node-version: 16
 
-      - name: Install dependencies
-        uses: bahmutov/npm-install@v1
+      - name: Setting .env variables for vite
+        run: |
+          echo "VITE_API_URL=${{ secrets.VITE_API_URL }}" >> $GITHUB_ENV
 
       - name: Creating .env for vite
         working-directory: ${{ github.workspace }}
         run: |
           touch .env
-          echo VITE_API_URL="${{ env.VITE_API_URL }}" >> .env
+          echo VITE_API_URL="$VITE_API_URL" >> .env
+
+      - name: Install dependencies
+        uses: bahmutov/npm-install@v1
 
       - name: Build project
         run: npm run build
@@ -38,7 +61,7 @@ jobs:
 
   deploy:
     name: Deploy
-    needs: build
+    needs: [setup_job, build]
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/master'
 
