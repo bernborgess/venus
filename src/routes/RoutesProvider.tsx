@@ -1,13 +1,12 @@
 import {
-  BrowserRouter,
-  Route,
+  BrowserRouter, Route,
   Routes,
   useNavigate
 } from "react-router-dom";
 
 import { RoutingContext, RoutingState } from ".";
-
 import { NavBar } from "../components/NavBar";
+
 import { AlbumCreate } from "../pages/Album/AlbumCreate";
 import { AllAlbums } from "../pages/Album/AllAlbums";
 import { AllArtists } from "../pages/Artist/AllArtists";
