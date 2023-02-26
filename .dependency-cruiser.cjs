@@ -200,6 +200,18 @@ module.exports = {
       to: {
         path: "src/routes/index.tsx",
       },
+    },
+    {
+      name: "not-import-component-dep",
+      severity: "error",
+      comment: "Only the index file can be imported in a component folder",
+      from: {
+        path: "^src/",
+        pathNot: "^src/components/"
+      },
+      to: {
+        path: "^src/components/((?!index).)*\\.tsx?$"
+      }
     }
   ],
   options: {

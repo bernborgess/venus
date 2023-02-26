@@ -5,7 +5,7 @@ import {
   Typography
 } from "@mui/material";
 import { FormEvent, PropsWithChildren } from "react";
-import { newArtist } from "../../constants/artist";
+import { newAlbum } from "../../../constants/album";
 
 const InputField = styled(TextField)({
   required: true,
@@ -16,17 +16,17 @@ const InputField = styled(TextField)({
 
 interface Props {
   title: string,
-  artist: newArtist,
-  updateArtist: (partialArtist: Partial<newArtist>) => void
+  album: newAlbum,
+  updateAlbum: (partialAlbum: Partial<newAlbum>) => void
   onSubmit?: (
     event: FormEvent<HTMLFormElement>,
-    newArtist: newArtist) => void
+    newAlbum: newAlbum) => void
 }
 
-export function ArtistForm({
+export function AlbumForm({
   title,
-  artist,
-  updateArtist,
+  album,
+  updateAlbum,
   onSubmit,
   children
 }: PropsWithChildren<Props>) {
@@ -43,29 +43,14 @@ export function ArtistForm({
         }}
         noValidate
         autoComplete="off"
-        onSubmit={(e) => onSubmit?.(e, artist)}
+        onSubmit={(e) => onSubmit?.(e, album)}
       >
         <InputField
           id="name"
           name="name"
           label="Nome"
-          value={artist.name}
-          onChange={(e) => updateArtist({ name: e.target.value })}
-        />
-        <InputField
-          id="username"
-          name="username"
-          label="Username"
-          value={artist.username}
-          onChange={(e) => updateArtist({ username: e.target.value })}
-        />
-        <InputField
-          id="email"
-          name="email"
-          label="Email"
-          type="email"
-          value={artist.email}
-          onChange={(e) => updateArtist({ email: e.target.value })}
+          value={album.title}
+          onChange={(e) => updateAlbum({ title: e.target.value })}
         />
         {children}
       </Box>
