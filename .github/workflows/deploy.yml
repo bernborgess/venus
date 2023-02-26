@@ -21,6 +21,12 @@ jobs:
       - name: Install dependencies
         uses: bahmutov/npm-install@v1
 
+      - name: Creating .env for vite
+        working-directory: ${{ github.workspace }}
+        run: |
+          touch .env
+          echo VITE_API_URL="${{ env.VITE_API_URL }}" >> .env
+
       - name: Build project
         run: npm run build
 
