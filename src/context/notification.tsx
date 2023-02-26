@@ -89,6 +89,7 @@ const NotificationProvider = ({ children }:
   const [message, setMessage] = useState("");
 
   function notify(err: unknown) {
+    setIsNotificationOpen(false);
     setSeverity("error");
 
     if (isSupportedError(err)) {
@@ -107,6 +108,7 @@ const NotificationProvider = ({ children }:
   }
 
   function sendMessage(msg: string, severity: AlertColor) {
+    setIsNotificationOpen(false);
     setSeverity(severity);
     setMessage(msg);
     setIsNotificationOpen(true);
