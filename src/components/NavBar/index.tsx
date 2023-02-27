@@ -5,14 +5,19 @@ import {
 import {
   AppBar,
   Box, Drawer as MuiDrawer,
-  IconButton, Toolbar
+  IconButton, Toolbar, Typography, useTheme
 } from "@mui/material";
 
 import {
+  useContext,
   useState
 } from "react";
 
 import { Outlet } from "react-router-dom";
+import { ColorModeContext } from "../../context/theme";
+import { useRouting } from "../../routes/useRouting";
+import { DarkmodeSwitch } from "./DarkmodeSwitch";
+
 import { Drawer } from "./Drawer";
 
 
@@ -24,15 +29,19 @@ export function NavBar() {
   const toggleIsDrawerOpen = () =>
     setIsDrawerOpen(!isDrawerOpen);
 
+  const { routeTitle } = useRouting();
+
+  const theme = useTheme();
+  const colorMode = useContext(ColorModeContext);
+
   return (
     <Box sx={{ display: "flex" }}>
-      {/* <CssBaseline /> */}
       <AppBar
         position="fixed"
         sx={{
           width: { sm: `calc(100% - ${drawerWidth}px)` },
           ml: { sm: `${drawerWidth}px` },
-          backgroundColor: "transparent",
+          // backgroundColor: "transparent",
           boxShadow: "none",
         }}
       >
@@ -45,12 +54,31 @@ export function NavBar() {
             sx={{ mr: 2, display: { sm: "none" } }}
             style={{
               color: "orange",
-              backgroundColor: "white",
               marginLeft: 12,
               borderRadius: 10, padding: 5
             }}
           >
             <MenuIcon />
+          </IconButton>
+          <Typography
+            variant="h6"
+          >
+            {routeTitle}
+          </Typography>
+
+          {/* // TODO: Create go back logic  */}
+          <IconButton
+            onClick={colorMode?.toggleColorMode}
+            color="inherit"
+            sx={{
+              marginLeft: "auto",
+              display: "flex",
+              flexDirection: "row",
+              marginRight: 3
+            }}
+          >
+            {/* {theme.palette.mode === "dark" ? <Brightness7Icon /> : <Brightness4Icon />} */}
+            <DarkmodeSwitch defaultChecked={false} />
           </IconButton>
         </Toolbar>
       </AppBar>
@@ -98,18 +126,19 @@ export function NavBar() {
 
       </Box>
 
-
       <Box
         component="main"
         sx={{
           flexGrow: 1,
-          p: 3,
           width: { sm: `calc(100% - ${drawerWidth}px)` },
-          // backgroundColor: "white"
+          height: "100vh",
+          marginTop: 6,
+          p: 3
         }}
       >
         <Outlet />
       </Box>
     </Box>
   );
-}     
+
+}

@@ -67,7 +67,7 @@ export function Drawer() {
   return (
     <Container
       style={{
-        background: theme.palette.primary.main,
+        // background: theme.palette.primary.main,
         color: theme.palette.grey[500],
         height: "100%"
       }}

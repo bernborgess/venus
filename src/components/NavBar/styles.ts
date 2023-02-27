@@ -13,20 +13,20 @@ export const UserDataList =
 export const UserDataCard =
   styled("div")(({ theme }) => ({
     width: "80%",
-    background: "var(--app-beige)",
+    // background: "var(--app-beige)",
     borderRadius: 80,
     height: 40,
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
-    color: "var(--app-laranja)",
+    // color: "var(--app-laranja)",
     paddingLeft: 5,
     position: "relative"
   }));
 
 export const UserAvatar =
   styled("span")(({ theme }) => ({
-    background: "white",
+    // background: "white",
     width: 25,
     height: 25,
     display: "flex",

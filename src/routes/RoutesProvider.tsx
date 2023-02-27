@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   BrowserRouter, Route,
   Routes,
@@ -26,22 +27,36 @@ const FEED_ROUTE = "posts";
 const RoutingProvider = ({ children }:
   React.PropsWithChildren) => {
   const navigate_raw = useNavigate();
-  const navigate = (route: string) => navigate_raw(`${BASE_PATH}/${route}`);
+  const [routeTitle, setRouteTitle] = useState("");
+  const navigateFn = (route: string, title: string) => {
+    setRouteTitle(title);
+    navigate_raw(`${BASE_PATH}/${route}`);
+  };
+
 
 
   const routingState: RoutingState = {
-    navigateToHome: () => navigate(""),
+    routeTitle,
 
-    navigateToAllArtists: () => navigate(ARTISTS_ROUTE),
-    navigateToArtistCreate: () => navigate(`${ARTISTS_ROUTE}/create`),
-    navigateToArtistProfile: (artistId: number) => navigate(`${ARTISTS_ROUTE}/${artistId}`),
-    navigateToArtistPosts: (artistId: number) => navigate(`${ARTISTS_ROUTE}/${artistId}/posts`),
+    navigateToHome: () => navigateFn("", "Home"),
 
-    navigateToAllAlbums: () => navigate(ALBUMS_ROUTE),
-    navigateToAlbumCreate: () => navigate(`${ALBUMS_ROUTE}/create`),
+    navigateToAllArtists: () => navigateFn(ARTISTS_ROUTE, "All Artists"),
 
-    navigateToFeed: () => navigate(FEED_ROUTE),
-    navigateToPostComments: (postId: number) => navigate(`${FEED_ROUTE}/${postId}/comments`)
+
+    navigateToArtistCreate: () => navigateFn(`${ARTISTS_ROUTE}/create`, "Create Artist"),
+    navigateToArtistProfile: (artistId: number) =>
+      navigateFn(`${ARTISTS_ROUTE}/${artistId}`, "Artist Profile"),
+    navigateToArtistPosts: (artistId: number) =>
+      navigateFn(`${ARTISTS_ROUTE}/${artistId}/posts`, "Artist's Posts"),
+
+    navigateToAllAlbums: () => navigateFn(ALBUMS_ROUTE, "All Albums"),
+    navigateToAlbumCreate: () => navigateFn(`${ALBUMS_ROUTE}/create`, "Create Album"),
+
+    navigateToFeed: () => navigateFn(FEED_ROUTE, "Feed"),
+    navigateToPostComments: (postId: number) =>
+      navigateFn(`${FEED_ROUTE}/${postId}/comments`, "Post's Comments"),
+
+    navigateBack: () => navigate_raw(-1)
   };
 
   return (
