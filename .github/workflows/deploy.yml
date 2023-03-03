@@ -6,6 +6,7 @@ on:
       - master
 jobs:
   setup_job:
+    name: Setup Job
     runs-on: ubuntu-latest
 
     steps:

@@ -1,6 +1,6 @@
 <h1 align="center">
   <br>
-  <a href=""><img src="./public/venus.svg" alt="Venus" width="200"></a>
+  <a href=""><img src="./client/public/venus.svg" alt="Venus" width="200"></a>
   <br>
   Venus
   <br>
