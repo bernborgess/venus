@@ -1,16 +1,22 @@
 import { PrismaClient } from "@prisma/client";
+import express from "express";
+
+const app = express();
+
+app.listen(
+  process.env.BACKEND_PORT,
+  () => {
+    console.log(`It's alive on port ${process.env.BACKEND_PORT}`);
+  }
+);
 
 const prisma = new PrismaClient();
 
 async function main() {
-  const user = await prisma.user.create({
-    data: {
-      name: "Admin",
-      email: "admin@admin.com",
-      role: "ADMIN"
-    }
-  });
-  console.log(user);
+  const users = await prisma.user.findMany();
+
+  console.log(users);
+
 }
 
 main()
