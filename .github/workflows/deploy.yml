@@ -50,6 +50,8 @@ jobs:
 
       - name: Install dependencies
         uses: bahmutov/npm-install@v1
+        with:
+          working-directory: ${{ github.workspace }}/client
 
       - name: Build project
         working-directory: ${{ github.workspace }}/client
@@ -58,8 +60,9 @@ jobs:
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v3.1.2
         with:
+          working-directory: ${{ github.workspace }}/client
           name: production-files
-          path: ./client/dist
+          path: ./dist
 
   deploy:
     name: Deploy
@@ -72,10 +75,12 @@ jobs:
         uses: actions/download-artifact@v3.0.2
         with:
           name: production-files
-          path: ./client/dist
+          working-directory: ${{ github.workspace }}/client
+          path: ./dist
 
       - name: GitHub Pages action
         uses: peaceiris/actions-gh-pages@v3.9.2
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./client/dist
+          working-directory: ${{ github.workspace }}/client
+          publish_dir: ./dist
