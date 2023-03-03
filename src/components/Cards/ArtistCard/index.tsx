@@ -14,8 +14,8 @@ import {
   IconButton,
   Typography
 } from "@mui/material";
-import { Artist } from "../../constants/artist";
-import { useRouting } from "../../routes/useRouting";
+import { Artist } from "../../../constants/artist";
+import { useRouting } from "../../../routes/useRouting";
 
 
 export function ArtistCard(artist: Artist) {
