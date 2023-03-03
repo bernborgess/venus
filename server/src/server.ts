@@ -9,8 +9,16 @@ async function main() {
       email: "admin@admin.com",
       role: "ADMIN"
     }
-  })
-  console.log(user)
+  });
+  console.log(user);
 }
 
 main()
+  .then(async () => {
+    await prisma.$disconnect();
+  })
+  .catch(async (e) => {
+    console.log(e);
+    await prisma.$disconnect();
+    process.exit(1);
+  });
