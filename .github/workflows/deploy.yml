@@ -75,12 +75,10 @@ jobs:
         uses: actions/download-artifact@v3.0.2
         with:
           name: production-files
-          working-directory: ${{ github.workspace }}/client
           path: ./dist
 
       - name: GitHub Pages action
         uses: peaceiris/actions-gh-pages@v3.9.2
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          working-directory: ${{ github.workspace }}/client
           publish_dir: ./dist
